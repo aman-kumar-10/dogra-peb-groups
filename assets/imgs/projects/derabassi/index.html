@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Denied</title>
+
+    <style>
+        :root {
+            --color-primary: #222831;
+            --color-accent: #FF6A00;
+            --color-accent-light: #FF8C42;
+            --color-bg: #FBFBFB;
+            --color-text: #1F2937;
+            --color-text-light: #6B7280;
+            --color-card: #FFFFFF;
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+        }
+
+        .access-card {
+            background: var(--color-card);
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .access-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 106, 0, 0.3);
+        }
+
+        .note {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="access-card">
+        <div class="access-icon">🚫</div>
+        <h1>Access Denied</h1>
+        <p>
+            You do not have permission to view this directory.
+            Please return to the main website to continue browsing.
+        </p>
+        <a href="https://dograpebgroups.in/" class="home-btn">Go to Home</a>
+        <div class="note">
+            DOGRA PEB GROUPS · Authorized Access Only
+        </div>
+    </div>
+
+</body>
+</html>
