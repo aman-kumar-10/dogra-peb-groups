@@ -34,7 +34,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -153,7 +153,7 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Pre-Engineered Buildings, Playways + Open GYM, Prefab Structures & Steel Fabrication Experts</h1>
+                <h1><span class="highlight">Pre-Engineered Buildings</span>, Playways + Open GYM, Prefab Structures & <span class="highlight">Steel Fabrication</span> Experts</h1>
                 <p>
                     DOGRA PEB GROUPS is a Government of India–registered enterprise delivering
                     Pre-Engineered Buildings (PEB), prefabricated structures, Open Gym installations
@@ -190,10 +190,35 @@
         </div>
     </section>
 
+    <!-- Stats Counter Metric Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="350">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="28">0</div>
+                    <div class="stat-label">Cities Across India</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="section">
         <div class="container">
             <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-cubes"></i> Engineering Solutions</div>
                 <h2>Our Core Services</h2>
                 <p>
                     We deliver reliable, steel-based construction and infrastructure solutions
@@ -334,10 +359,270 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section" style="background: #262c3514;">
+    <!-- ============================================ -->
+    <!-- Open Gym Equipment & Garden Swing Section     -->
+    <!-- ============================================ -->
+    <section id="open-gym-garden-swings" class="section open-gym-section bg-grid">
+        <div class="container">
+            <div class="open-gym-card fade-in">
+                <div class="open-gym-layout">
+
+                    <!-- Left Column: Image Showcase Collage -->
+                    <div class="open-gym-gallery">
+                        <div class="open-gym-main-image-wrap" id="openGymGalleryMain">
+                            <img src="assets/imgs/equipments/equipment-main.png"
+                                 srcset="assets/imgs/equipments/equipment-main.png"
+                                 alt="Open Gym Equipment & Garden Swing by Dogra PEB Groups"
+                                 class="open-gym-main-image"
+                                 id="openGymMainPhoto"
+                                 loading="lazy">
+                            <div class="open-gym-image-badge">
+                                <i class="fas fa-tools"></i> Turnkey Supply &amp; On-Site Installation
+                            </div>
+                            <button class="open-gym-catalog-btn" id="openCatalogFromGallery" type="button" title="Open Full Equipment Catalog">
+                                <i class="fas fa-expand"></i> View All 13 Equipments
+                            </button>
+                        </div>
+
+                        <!-- 4 Thumbnails (Matching sample image layout) -->
+                        <div class="open-gym-thumb-grid">
+                            <div class="open-gym-thumb" data-eq-num="9" role="button" tabindex="0" title="Double-Seater Garden Swing">
+                                <img src="assets/imgs/equipments/double-swing.png" alt="Double-Seater Garden Swing" loading="lazy">
+                                <span class="thumb-label">Garden Swing</span>
+                            </div>
+                            <div class="open-gym-thumb" data-eq-num="12" role="button" tabindex="0" title="Children's Slide">
+                                <img src="assets/imgs/equipments/slide.png" alt="Children's Slide" loading="lazy">
+                                <span class="thumb-label">Park Slide</span>
+                            </div>
+                            <div class="open-gym-thumb" data-eq-num="11" role="button" tabindex="0" title="Seesaw">
+                                <img src="assets/imgs/equipments/seesaw.png" alt="Seesaw" loading="lazy">
+                                <span class="thumb-label">Park Seesaw</span>
+                            </div>
+                            <div class="open-gym-thumb" data-eq-num="13" role="button" tabindex="0" title="Merry-Go-Round">
+                                <img src="assets/imgs/equipments/round.png" alt="Merry-Go-Round" loading="lazy">
+                                <span class="thumb-label">Merry-Go-Round</span>
+                            </div>
+                        </div>
+
+                        <!-- Trust & Capability Badges Strip (Moved to Left Side for Visual Balance) -->
+                        <div class="equipment-trust-strip">
+                            <div class="trust-strip-item">
+                                <div class="trust-icon"><i class="fas fa-cog"></i></div>
+                                <div class="trust-text">
+                                    <span class="trust-title">OEM specifications</span>
+                                    <span class="trust-desc">available on request</span>
+                                </div>
+                            </div>
+                            <div class="trust-strip-item">
+                                <div class="trust-icon"><i class="fas fa-box"></i></div>
+                                <div class="trust-text">
+                                    <span class="trust-title">Supply through</span>
+                                    <span class="trust-desc">GeM Portal</span>
+                                </div>
+                            </div>
+                            <div class="trust-strip-item">
+                                <div class="trust-icon"><i class="fas fa-users"></i></div>
+                                <div class="trust-text">
+                                    <span class="trust-title">For parks, institutions</span>
+                                    <span class="trust-desc">&amp; public spaces</span>
+                                </div>
+                            </div>
+                            <div class="trust-strip-item">
+                                <div class="trust-icon"><i class="fas fa-tools"></i></div>
+                                <div class="trust-text">
+                                    <span class="trust-title">Turnkey Supply</span>
+                                    <span class="trust-desc">&amp; On-Site Installation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons (Moved to Left Side) -->
+                        <div class="open-gym-actions">
+                            <a href="contact-us/index.html?service=Open%20Gym%20Equipment" class="btn-enquire-round">
+                                <span class="btn-text">ENQUIRE FOR EQUIPMENT</span>
+                                <span class="btn-arrow-icon"><i class="fas fa-arrow-right"></i></span>
+                            </a>
+                            <button type="button" class="btn btn-outline catalog-modal-trigger" id="openEquipmentModalBtn">
+                                <i class="fas fa-sliders-h"></i> View Equipment Slider &amp; Images
+                            </button>
+                            <a href="open-gym-equipment/index.html" class="btn-dedicated-page">
+                                <i class="fas fa-external-link-alt"></i> View Full Equipment Page &amp; Specs
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Details & Equipment Lists in Boxes -->
+                    <div class="open-gym-content">
+                        <div class="section-accent-bar"></div>
+                        <h2 class="open-gym-title">OPEN GYM EQUIPMENT &amp; GARDEN SWING</h2>
+                        <p class="open-gym-subtitle">Durable outdoor fitness and park equipment for public spaces.</p>
+
+                        <p class="open-gym-description">
+                            Dogra PEB Groups is an authorized manufacturer and trusted contractor delivering robust outdoor fitness stations, garden swings, and children's park infrastructure across India. We supply precision-engineered equipment compliant with standard <strong>machine specifications under OEM</strong> and provide authorized procurement via the <strong>Government e-Marketplace (GeM Portal)</strong>. We handle the entire project lifecycle—from <strong>certified factory supply to nationwide delivery and complete turnkey on-site civil foundation and grouting installation</strong>.
+                        </p>
+
+                        <!-- Two Boxes Side-by-Side (Matching user screenshot) -->
+                        <div class="equipment-boxes-grid">
+
+                            <!-- Box 1: Open Gym Equipment (8 items) -->
+                            <div class="equipment-box equipment-box-gym">
+                                <div class="equipment-box-header">
+                                    <div class="equipment-box-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3>OPEN GYM EQUIPMENT</h3>
+                                </div>
+                                <div class="box-divider"></div>
+                                <ul class="equipment-list">
+                                    <li class="equipment-item" data-eq="1" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">1</span>
+                                        <span class="equipment-name">Air Walker</span>
+                                        <img src="assets/imgs/equipments/air-walker.png" alt="Air Walker" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="2" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">2</span>
+                                        <span class="equipment-name">Cross Trainer</span>
+                                        <img src="assets/imgs/equipments/cross-trainer.png" alt="Cross Trainer" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="3" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">3</span>
+                                        <span class="equipment-name">Waist Twister</span>
+                                        <img src="assets/imgs/equipments/waist-twister.png" alt="Waist Twister" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="4" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">4</span>
+                                        <span class="equipment-name">Shoulder Wheel</span>
+                                        <img src="assets/imgs/equipments/shoulder-wheel.png" alt="Shoulder Wheel" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="5" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">5</span>
+                                        <span class="equipment-name">Chest Press</span>
+                                        <img src="assets/imgs/equipments/chest-press.png" alt="Chest Press" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="6" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">6</span>
+                                        <span class="equipment-name">Leg Press</span>
+                                        <img src="assets/imgs/equipments/leg-press.png" alt="Leg Press" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="7" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">7</span>
+                                        <span class="equipment-name">Rowing Machine</span>
+                                        <img src="assets/imgs/equipments/rowing-machine.png" alt="Rowing Machine" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="8" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">8</span>
+                                        <span class="equipment-name">Sit-Up Bench</span>
+                                        <img src="assets/imgs/equipments/situp-bentch.png" alt="Sit-Up Bench" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Box 2: Garden & Children's Park (5 items) -->
+                            <div class="equipment-box equipment-box-park">
+                                <div class="equipment-box-header">
+                                    <div class="equipment-box-icon">
+                                        <i class="fas fa-child"></i>
+                                    </div>
+                                    <h3>GARDEN &amp; CHILDREN’S PARK</h3>
+                                </div>
+                                <div class="box-divider"></div>
+                                <ul class="equipment-list">
+                                    <li class="equipment-item" data-eq="9" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">1</span>
+                                        <span class="equipment-name">Double-Seater Garden Swing</span>
+                                        <img src="assets/imgs/equipments/double-swing.png" alt="Double-Seater Garden Swing" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="10" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">2</span>
+                                        <span class="equipment-name">Children’s Swing</span>
+                                        <img src="assets/imgs/equipments/single-swing.png" alt="Children’s Swing" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="11" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">3</span>
+                                        <span class="equipment-name">Seesaw</span>
+                                        <img src="assets/imgs/equipments/seesaw.png" alt="Seesaw" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="12" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">4</span>
+                                        <span class="equipment-name">Children’s Slide</span>
+                                        <img src="assets/imgs/equipments/slide.png" alt="Children’s Slide" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                    <li class="equipment-item" data-eq="13" role="button" tabindex="0" title="Click to view specs and photo">
+                                        <span class="equipment-num">5</span>
+                                        <span class="equipment-name">Merry-Go-Round</span>
+                                        <img src="assets/imgs/equipments/round.png" alt="Merry-Go-Round" class="equipment-point-img" loading="lazy" onerror="this.style.display='none'">
+                                        <i class="fas fa-angle-right item-arrow"></i>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Company Overview Section -->
+    <section id="why-choose-us" class="section bg-grid" style="background-color: var(--color-bg-alt);">
         <div class="container">
             <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-shield-alt"></i> Engineering Advantage</div>
+                <h2>Why Choose Dogra PEB Groups</h2>
+                <p>
+                    Built on precision structural engineering, rigorous fabrication standards, and an unwavering commitment to client trust.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+                <div class="service-card fade-in" style="margin: 0;">
+                    <div class="service-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Government Registered</h3>
+                    <p>Recognized enterprise registered with the Government of India, MSME certified (UDYAM-HP-04-0016272), and ISO 9001:2015 certified for quality assurance.</p>
+                </div>
+                <div class="service-card fade-in" style="margin: 0;">
+                    <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Precision Pre-Fabrication</h3>
+                    <p>Advanced factory-engineered steel components assembled rapidly on-site, delivering 30–50% faster construction with minimized material waste.</p>
+                </div>
+                <div class="service-card fade-in" style="margin: 0;">
+                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Heavy-Duty Steel & Tanks</h3>
+                    <p>High-grade mild steel and stainless steel fabrication engineered for seismic resilience, heavy industrial loads, and corrosive environments.</p>
+                </div>
+                <div class="service-card fade-in" style="margin: 0;">
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Turnkey Execution</h3>
+                    <p>End-to-end management spanning architectural design, structural calculation, precision fabrication, transport, and turnkey on-site erection.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="about-us/index.html" class="btn btn-outline">
+                    <i class="fas fa-info-circle"></i> Learn More About Our Company
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-hard-hat"></i> Executed Excellence</div>
                 <h2>Featured Projects</h2>
                 <p>
                     A glimpse of our work across industrial construction, prefabricated structures,
@@ -546,6 +831,7 @@
     <section id="gallery" class="section">
         <div class="container">
             <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-camera"></i> On-Site Visuals</div>
                 <h2>Project Gallery</h2>
                 <p>
                     A visual glimpse of our work across PEB construction, prefabricated structures,
@@ -691,9 +977,10 @@
 
 
     <!-- FAQ Section -->
-    <section id="faq" class="section" style="background: #262c3514;">
+    <section id="faq" class="section">
         <div class="container">
             <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-question-circle"></i> Helpful Answers</div>
                 <h2>Frequently Asked Questions</h2>
                 <p>
                     Quick answers to common questions about our construction,
@@ -768,6 +1055,7 @@
     <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
+                <div class="section-eyebrow"><i class="fas fa-headset"></i> Get In Touch</div>
                 <h2>Contact Us</h2>
                 <p>
                     Contact us for enquiries related to Pre-Engineered Buildings (PEB), Open Gym installations and equipment, MS & SS tank fabrication, PUF cabins, outdoor infrastructure, and playway solutions.
@@ -1173,6 +1461,136 @@
             </div>
         </div>
         <div class="project-popup-overlay" id="projectPopupOverlay"></div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- Open Gym & Garden Swing Catalog Modal Popup  -->
+    <!-- ============================================ -->
+    <div class="equipment-modal" id="equipmentCatalogModal" aria-hidden="true" role="dialog" aria-labelledby="eqModalHeading">
+        <div class="equipment-modal-overlay" id="equipmentModalOverlay"></div>
+        <div class="equipment-modal-dialog">
+
+            <!-- Modal Header -->
+            <div class="equipment-modal-header">
+                <div class="eq-modal-header-info">
+                    <div class="eq-modal-badges">
+                        <span class="eq-badge gem-tag"><i class="fas fa-shield-alt"></i> GeM Portal Listed</span>
+                        <span class="eq-badge oem-tag"><i class="fas fa-certificate"></i> OEM Specifications</span>
+                        <span class="eq-badge install-tag"><i class="fas fa-wrench"></i> Complete Supply &amp; Installation</span>
+                    </div>
+                    <h2 class="equipment-modal-title" id="eqModalHeading">OPEN GYM EQUIPMENT &amp; GARDEN SWING</h2>
+                    <p class="equipment-modal-subtitle">Browse standard equipment specifications, exercise purposes, and photo references.</p>
+                </div>
+                <button type="button" class="equipment-modal-close" id="equipmentModalClose" aria-label="Close Equipment Catalog">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="equipment-filter-tabs">
+                <button type="button" class="eq-filter-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> All Equipment (13)
+                </button>
+                <button type="button" class="eq-filter-btn" data-filter="gym">
+                    <i class="fas fa-dumbbell"></i> Open Gym Equipment (8)
+                </button>
+                <button type="button" class="eq-filter-btn" data-filter="park">
+                    <i class="fas fa-child"></i> Garden &amp; Park Equipment (5)
+                </button>
+            </div>
+
+            <!-- Main Interactive Equipment Slider -->
+            <div class="eq-slider-viewport">
+                <button type="button" class="eq-nav-btn eq-prev-btn" id="eqSliderPrev" aria-label="Previous Equipment">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="eq-slide-showcase" id="eqSlideShowcase">
+                    <!-- Image Showcase Side -->
+                    <div class="eq-slide-visual">
+                        <div class="eq-photo-frame" id="eqPhotoFrame">
+                            <img src="assets/imgs/equipments/eq1.jpeg"
+                                 alt="Air Walker"
+                                 class="eq-slide-img"
+                                 id="eqSlideImg"
+                                 onerror="handleEqImgFallback(this)">
+                            <div class="eq-photo-fallback" id="eqPhotoFallback" style="display: none;">
+                                <div class="fallback-icon-wrap">
+                                    <i class="fas fa-dumbbell" id="eqFallbackIcon"></i>
+                                </div>
+                                <h4 class="fallback-title" id="eqFallbackTitle">Air Walker</h4>
+                                <span class="fallback-path" id="eqFallbackPath">assets/imgs/equipments/eq1.jpeg</span>
+                                <span class="fallback-tag"><i class="fas fa-clock"></i> Photo slot ready for eq1.jpeg</span>
+                            </div>
+                            <span class="eq-counter-badge" id="eqCounterBadge">1 / 13</span>
+                        </div>
+                    </div>
+
+                    <!-- Technical Specs Side -->
+                    <div class="eq-slide-details">
+                        <div class="eq-meta-row">
+                            <span class="eq-category-pill" id="eqCategoryPill">Open Gym Equipment</span>
+                            <span class="eq-status-badge"><i class="fas fa-check-circle"></i> GeM Verified</span>
+                        </div>
+
+                        <h3 class="eq-item-heading" id="eqItemHeading">1. Air Walker</h3>
+
+                        <!-- Purpose / Description from PDF -->
+                        <div class="eq-purpose-card">
+                            <span class="purpose-title"><i class="fas fa-bullseye"></i> Purpose / Description</span>
+                            <p class="purpose-desc" id="eqPurposeDesc">Walking and leg exercise</p>
+                        </div>
+
+                        <!-- Technical Machine Specifications under OEM -->
+                        <div class="eq-specs-grid">
+                            <div class="eq-spec-item">
+                                <span class="spec-label"><i class="fas fa-cube"></i> Pipe &amp; Material</span>
+                                <span class="spec-val" id="eqSpecPipe">Heavy-duty Class B Mild Steel (IS 1239 / 1161)</span>
+                            </div>
+                            <div class="eq-spec-item">
+                                <span class="spec-label"><i class="fas fa-paint-roller"></i> Surface Finish</span>
+                                <span class="spec-val" id="eqSpecCoating">UV-Resistant Electrostatic Polyester Powder Coating</span>
+                            </div>
+                            <div class="eq-spec-item">
+                                <span class="spec-label"><i class="fas fa-cogs"></i> Hardware</span>
+                                <span class="spec-val" id="eqSpecHardware">Sealed Roller Bearings &amp; SS Anti-Theft Fasteners</span>
+                            </div>
+                            <div class="eq-spec-item">
+                                <span class="spec-label"><i class="fas fa-tools"></i> Installation</span>
+                                <span class="spec-val">Complete Turnkey Civil Foundation &amp; Grouting</span>
+                            </div>
+                        </div>
+
+                        <div class="eq-slide-actions">
+                            <a href="contact-us/index.html?service=Open%20Gym%20Equipment" class="btn btn-primary eq-enquire-btn" id="eqSlideEnquireBtn">
+                                <i class="fas fa-paper-plane"></i> Enquire for this Equipment
+                            </a>
+                            <button type="button" class="btn btn-outline" id="eqNextSlideInline">
+                                Next Equipment <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="eq-nav-btn eq-next-btn" id="eqSliderNext" aria-label="Next Equipment">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Thumbnail Navigation Strip (13 Items) -->
+            <div class="eq-thumb-slider-wrap">
+                <div class="eq-thumb-track" id="eqThumbTrack">
+                    <!-- Thumbnails populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Footer Notice matching PDF specifications -->
+            <div class="equipment-modal-footer">
+                <i class="fas fa-info-circle"></i>
+                <span><strong>OEM &amp; GeM Procurement:</strong> Standard equipment names and specifications for park/garden inventory and GeM listing. We provide customized OEM technical compliance sheets and turnkey on-site installation across public parks, institutions, and municipal developments.</span>
+            </div>
+
+        </div>
     </div>
 
     <script src="assets/js/script.js"></script>
