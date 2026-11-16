@@ -270,6 +270,7 @@
                                 <option value="tanks">MS/SS Tanks</option>
                                 <option value="playway">Playway Equipment</option>
                                 <option value="gym">Open Gym Equipment</option>
+                                <option value="furniture">Office Furniture (GeM)</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -360,7 +361,8 @@
                         <li><a href="../services/index.html">Prefab Houses</a></li>
                         <li><a href="../services/index.html">MS/SS Tanks</a></li>
                         <li><a href="../services/index.html">Playway Equipment</a></li>
-                        <li><a href="../services/index.html">Open Gym Equipment</a></li>
+                        <li><a href="../open-gym-equipment/index.html">Open Gym Equipment</a></li>
+                        <li><a href="../office-furniture/index.html">Office Furniture (GeM)</a></li>
                         <li><a href="../services/index.html">Industrial Insulation</a></li>
                     </ul>
                 </div>
@@ -384,6 +386,30 @@
     </footer>
 
     <script src="../assets/js/script.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get('service');
+        const itemParam = urlParams.get('item');
+
+        const serviceSelect = document.getElementById("service");
+        const messageArea = document.getElementById("message");
+
+        if (serviceParam && serviceSelect) {
+            if (serviceParam.toLowerCase().includes("furniture")) {
+                serviceSelect.value = "furniture";
+            } else if (serviceParam.toLowerCase().includes("gym")) {
+                serviceSelect.value = "gym";
+            }
+        }
+
+        if (itemParam && messageArea) {
+            messageArea.value = "Enquiry regarding: " + itemParam + " (GeM Procurement & Supply).\nPlease provide specifications, pricing, and delivery schedules.";
+        } else if (serviceParam && serviceParam.toLowerCase().includes("furniture") && messageArea) {
+            messageArea.value = "Enquiry regarding Office Furniture procurement under GeM Seller ID: AFMM230008508202.\nPlease provide catalog and project quotation.";
+        }
+    });
+    </script>
 </body>
 
 </html>

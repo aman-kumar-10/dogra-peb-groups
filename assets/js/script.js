@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initFestivalTheme();
     initScrollProgress();
     initEquipmentCatalogModal();
+    initFurnitureCatalogModal();
+    initFurnitureHomeSection();
 });
 
 // ============================================
@@ -925,6 +927,7 @@ function resolveAssetPath(relPath) {
                      window.location.pathname.includes("/projects") ||
                      window.location.pathname.includes("/gallery") ||
                      window.location.pathname.includes("/open-gym-equipment") ||
+                     window.location.pathname.includes("/office-furniture") ||
                      window.location.pathname.includes("/contact-us");
     return isSubdir ? "../" + relPath : relPath;
 }
@@ -1832,4 +1835,1354 @@ function initEquipmentCatalogModal() {
 
     // Initial render of thumbnails
     renderThumbnails();
+}
+
+
+
+// ============================================
+// 15. OFFICE FURNITURE DATA & MODAL SYSTEM
+// GeM Verified Seller ID: AFMM230008508202 | 100% Make in India
+// ============================================
+const FURNITURE_DATA = [
+    // 1. Wooden Furniture (24 items)
+    {
+        id: 1,
+        name: "Executive Office Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-briefcase",
+        purpose: "Premium executive workstation with modesty panel, wire management, and side drawer return for senior leadership cabins.",
+        material: "Seasoned Teak / High-Grade Engineered Hardwood (IS Standard)",
+        finish: "Scratch-Resistant Melamine / Natural PU Polish",
+        hardware: "Telescopic Drawer Channels & Precision Cable Grommets"
+    },
+    {
+        id: 2,
+        name: "Manager Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-user-tie",
+        purpose: "Spacious managerial desk with lockable storage drawers and integrated wire routing channels.",
+        material: "Commercial Grade BWP Plywood / Pre-Laminated Board",
+        finish: "Dual-Tone Matte Laminate Finish",
+        hardware: "Soft-Close Hinges & Central Locking System"
+    },
+    {
+        id: 3,
+        name: "Director Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-user-shield",
+        purpose: "Expansive luxury director suite with extended conference end, credenza return, and leatherette desk pad.",
+        material: "High-Density Veneered Hardwood / Solid Wood Core",
+        finish: "High-Gloss Polyurethane Lacquer Finish",
+        hardware: "Integrated Pop-Up Power Box & Hidden Cable Riser"
+    },
+    {
+        id: 4,
+        name: "CEO Cabin Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-crown",
+        purpose: "Flagship executive desk suite engineered for top corporate offices and administrative heads.",
+        material: "Selected Natural Teak Veneer / Solid Hardwood Edges",
+        finish: "Hand-Rubbed Walnut / Natural Mahogany PU Coating",
+        hardware: "Heavy-Duty German Concealed Hardware & Lock System"
+    },
+    {
+        id: 5,
+        name: "Conference Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-users",
+        purpose: "Multi-person conference table accommodating 8 to 24 executives with centralized wire management ducts.",
+        material: "Heavy-Duty IS 303 Marine Ply / Engineered Composite",
+        finish: "Anti-Stain Melamine Surface with Solid Wood Edging",
+        hardware: "Modular Flip-Top Data & HDMI Power Modules"
+    },
+    {
+        id: 6,
+        name: "Meeting Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-handshake",
+        purpose: "Round or rectangular meeting table for departmental discussions and agile collaborative huddles.",
+        material: "Commercial Pre-Laminated MDF / Plywood Structure",
+        finish: "2mm Shock-Proof PVC Edge-Banded Laminate",
+        hardware: "Heavy-Duty Stabilizer Leveling Glides"
+    },
+    {
+        id: 7,
+        name: "Computer Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-desktop",
+        purpose: "Ergonomic computer desk featuring a smooth keyboard pull-out tray, dedicated CPU compartment, and wire conduits.",
+        material: "Pre-Laminated Particle Board / Plywood",
+        finish: "Thermal-Fused Melamine Surface",
+        hardware: "Ball-Bearing Keyboard Slides & Cable Outlets"
+    },
+    {
+        id: 8,
+        name: "Reception Counter",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-concierge-bell",
+        purpose: "Contemporary curved or straight reception counter with raised transaction shelf and concealed workspace.",
+        material: "Engineered Wood with Solid Surface Transaction Top",
+        finish: "High-Gloss Accent Laminate with LED Backlight Slot",
+        hardware: "Lockable Multi-Drawer Pedestal & Document Trays"
+    },
+    {
+        id: 9,
+        name: "Reception Desk",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-building",
+        purpose: "Front-office staff workstation designed for visitor registration, PBX telephony, and documentation.",
+        material: "Commercial Grade BWP Wood Composite",
+        finish: "Textured Teak / White Matte Contrast Finish",
+        hardware: "Heavy-Duty Cam Lock Fittings & Cable Grommets"
+    },
+    {
+        id: 10,
+        name: "Wooden Workstation",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-laptop-code",
+        purpose: "Individual or linear clustered wooden staff workstations with modesty panel and pinboard partition screen.",
+        material: "Pre-Laminated Engineered Board / Wooden Framework",
+        finish: "High-Durability Suede Finish Melamine",
+        hardware: "Wire Raceways & Metallic Drawer Handles"
+    },
+    {
+        id: 11,
+        name: "Wooden Storage Cabinet",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-archive",
+        purpose: "Full-height wooden storage cabinet with adjustable internal shelves and lockable hinged double doors.",
+        material: "Heavy-Duty BWP Blockboard / Commercial Ply",
+        finish: "Scratch-Resistant Warm Woodgrain Laminate",
+        hardware: "Three-Way Lock & Anti-Corrosion Hinges"
+    },
+    {
+        id: 12,
+        name: "Wooden Filing Cabinet",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-folder-open",
+        purpose: "Multi-drawer filing unit configured for hanging suspension folders, dossiers, and administrative records.",
+        material: "High-Strength Seasoned Plywood",
+        finish: "Water-Resistant Melamine Finish",
+        hardware: "Full-Extension Heavy Load Telescopic Slides"
+    },
+    {
+        id: 13,
+        name: "Wooden Bookshelf",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-book",
+        purpose: "Open and glazed multi-tier bookshelf for official law gazettes, reference volumes, and departmental registries.",
+        material: "Engineered Wood with Solid Edge Strip",
+        finish: "Stain-Free Polyurethane / Laminate Coating",
+        hardware: "Toughened Glass Shutters & Brass Pivots"
+    },
+    {
+        id: 14,
+        name: "Wooden Credenza",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-boxes",
+        purpose: "Low-height side credenza console serving executive cabins and boardroom audio-visual support.",
+        material: "Commercial Plywood with Hardwood Base",
+        finish: "Natural Woodgrain Veneer / Melamine Finish",
+        hardware: "Soft-Close Sliding Track System"
+    },
+    {
+        id: 15,
+        name: "Wooden Side Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-table",
+        purpose: "Compact auxiliary side table for lamps, printers, landline consoles, and personal files.",
+        material: "Seasoned Solid Hardwood / Pre-Laminated Board",
+        finish: "Semi-Gloss Protective PU Coating",
+        hardware: "Concealed Fasteners & Floor Protective Pads"
+    },
+    {
+        id: 16,
+        name: "Wooden Centre Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-couch",
+        purpose: "Classic coffee and centre table for VIP visitor waiting lounges and executive suites.",
+        material: "Solid Teakwood Frame with Glass / Wooden Top",
+        finish: "Deep Walnut / Natural PU Clear Polish",
+        hardware: "Beveled Edge Float Glass Top Support"
+    },
+    {
+        id: 17,
+        name: "Wooden Coffee Table",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-coffee",
+        purpose: "Sturdy wooden low table for office breakout areas, informal lounges, and pantry zones.",
+        material: "Hardwood Ply with Cross-Braced Understructure",
+        finish: "Heat and Moisture-Resistant Melamine Finish",
+        hardware: "Rounded Safety Corners & Non-Skid Buffers"
+    },
+    {
+        id: 18,
+        name: "Wooden Wall Cabinet",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-door-closed",
+        purpose: "Overhead wall-mounted storage locker saving valuable floor area in compact government chambers.",
+        material: "High-Strength IS Grade Marine Board",
+        finish: "Scratch-Proof Textured Laminate",
+        hardware: "Heavy-Duty Wall Anchor Cleats & Hydraulic Lifts"
+    },
+    {
+        id: 19,
+        name: "Wooden Display Unit",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-award",
+        purpose: "Showcase cabinet with glass facade for awards, trophies, institutional achievements, and sample exhibits.",
+        material: "Fine Veneered Wood with Clear Float Glass",
+        finish: "Heritage Mahogany / Teak PU Polish",
+        hardware: "Concealed Spot-LED Slots & Cylinder Key Locks"
+    },
+    {
+        id: 20,
+        name: "Wooden Sofa Frame",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-chair",
+        purpose: "Heavy structural solid hardwood sofa frame crafted for single, 2-seater, and 3-seater executive seating.",
+        material: "Seasoned Sal / Teak Hardwood Structural Core",
+        finish: "Anti-Termite Chemical Treatment & Base Primer",
+        hardware: "Reinforced Corner Blocks & Tenon Joints"
+    },
+    {
+        id: 21,
+        name: "Wooden Waiting Bench",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-users-cog",
+        purpose: "Long-lasting solid wood bench for public corridors, courthouse verandas, and institutional lobbies.",
+        material: "Solid Teakwood / Seasoned Hardwood Slats",
+        finish: "Weather-Resistant Polyurethane Coating",
+        hardware: "Heavy-Duty Steel Fasteners & Floor Anchor Brackets"
+    },
+    {
+        id: 22,
+        name: "Wooden Pantry Cabinet",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-utensils",
+        purpose: "Hygienic multi-shelf wooden cabinet for staff tea pantries, crockery, and provisions storage.",
+        material: "Waterproof BWP Marine Grade Plywood",
+        finish: "High-Pressure Anti-Bacterial Kitchen Laminate",
+        hardware: "Stainless Steel Wire Baskets & Concealed Hinges"
+    },
+    {
+        id: 23,
+        name: "Wooden Locker Cabinet",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-key",
+        purpose: "Multi-compartment individual staff locker bank with personalized numbered keys and ventilation louvers.",
+        material: "High-Density Moisture-Resistant Plywood",
+        finish: "Impact-Resistant Laminate Facing",
+        hardware: "Individual Master-Key Compatible Cam Locks"
+    },
+    {
+        id: 24,
+        name: "Wooden Podium / Lectern",
+        category: "Wooden Furniture",
+        categoryKey: "wooden",
+        image: "assets/imgs/furniture/Wooden_img1.jpg",
+        icon: "fa-microphone-alt",
+        purpose: "Commanding speaker lectern with sloped reading surface, microphone clip socket, and internal shelf for auditoriums.",
+        material: "Solid Hardwood Structure with Veneered Body",
+        finish: "Hand-Crafted Natural Teak PU Satin Polish",
+        hardware: "Concealed Castors for Mobility & Cable Passages"
+    },
+
+    // 2. Metal Furniture (20 items)
+    {
+        id: 25,
+        name: "Metal Office Table",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-table",
+        purpose: "Rugged CRCA sheet steel office desk equipped with anti-rust epoxy powder coat and lockable double drawers.",
+        material: "Prime CRCA Mild Steel Sheet (IS 513 compliant)",
+        finish: "Pure Polyester Electrostatic Powder Coating (70-80 Microns)",
+        hardware: "Smooth Roller Slide Suspension & Central Lock"
+    },
+    {
+        id: 26,
+        name: "Metal Computer Table",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-laptop",
+        purpose: "Heavy-gauge tubular steel computer table with dedicated ventilated CPU platform and keyboard slider.",
+        material: "Square Hollow Section MS Tubing & CRCA Panels",
+        finish: "Anti-Scratch Textured Powder Coating",
+        hardware: "Heavy-Duty Cable Grommets & Telescopic Slides"
+    },
+    {
+        id: 27,
+        name: "Metal Workstation Frame",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-cubes",
+        purpose: "High-tensile structural steel understructure engineered for modular desk clusters and benching systems.",
+        material: "Laser-Cut Precision Cold-Rolled Steel Tubing",
+        finish: "Dual-Stage Zinc Phosphate Pre-Treatment & Powder Coat",
+        hardware: "Precision Aluminum Die-Cast Joinery Couplers"
+    },
+    {
+        id: 28,
+        name: "Metal Office Chair",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-chair",
+        purpose: "Ergonomic revolving executive chair with chrome metal base, pneumatic gas lift, and lumbar support.",
+        material: "Heavy-Gauge Die-Cast Steel Base & Foam Cushioning",
+        finish: "Chrome-Plated / Black Epoxy Powder Coated Base",
+        hardware: "BIFMA Certified Class 4 Gas Lift Cylinder & Castors"
+    },
+    {
+        id: 29,
+        name: "Metal Visitor Chair",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-user-friends",
+        purpose: "Sturdy cantilever or 4-legged metal chair with breathable mesh back and contoured upholstered seat.",
+        material: "Cold-Formed High-Tensile Steel Tubular Frame",
+        finish: "Bright Chromium Plating / Matte Powder Coat",
+        hardware: "Non-Marring Nylon Floor Glides"
+    },
+    {
+        id: 30,
+        name: "Metal Filing Cabinet",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-folder",
+        purpose: "Fire-retardant 2, 3, or 4 drawer steel filing cabinet with anti-rebound central locking mechanism.",
+        material: "Heavy 0.8mm - 1.2mm CRCA Steel Sheet",
+        finish: "Oven-Baked Epoxy Polyester Powder Coating",
+        hardware: "Ball-Bearing Heavy Load Slides with Anti-Tilt Safety"
+    },
+    {
+        id: 31,
+        name: "Metal Storage Cabinet",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-archive",
+        purpose: "Twin-door industrial metal storage cabinet with four adjustable reinforced shelves for heavy office supplies.",
+        material: "0.8mm - 1.0mm Prime CRCA Sheet Steel",
+        finish: "Multi-Tank Chemical Pre-Treatment & Powder Coat",
+        hardware: "Three-Way Bolt Lock with Dual Brass Keys"
+    },
+    {
+        id: 32,
+        name: "Metal Almirah",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-door-closed",
+        purpose: "Standard government specification steel almirah featuring internal locker compartment, hanging rail, and shelves.",
+        material: "Conforming to IS 3312 Heavy-Duty CRCA Steel",
+        finish: "Corrosion-Resistant Oven-Baked Enamel / Powder Finish",
+        hardware: "Three-Point Locking Handle with Godrej/Equivalent Lock"
+    },
+    {
+        id: 33,
+        name: "Metal Locker",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-lock",
+        purpose: "Multi-tier steel personnel locker unit (4/6/8/12 doors) with ventilation louvers and padlock hasps.",
+        material: "Folded Construction CRCA Sheet Steel",
+        finish: "High-Durability Textured Powder Coating",
+        hardware: "Cam Lock / Padlock Hasp & Label Holders"
+    },
+    {
+        id: 34,
+        name: "Metal Bookshelf",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-book-open",
+        purpose: "Open or glass-door steel library book rack with stiffened shelves to bear heavy document weights.",
+        material: "Rigid Cold-Rolled Mild Steel Channels & Shelves",
+        finish: "Electrostatic Anti-Scratch Powder Coating",
+        hardware: "Adjustable Shelf Pegs & Heavy Bottom Base"
+    },
+    {
+        id: 35,
+        name: "Metal Open Rack",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-stream",
+        purpose: "Heavy-duty slotted angle steel rack for inventory warehousing, record management, and archival storage.",
+        material: "High-Tensile Slotted Angle MS Profiles (IS 1732)",
+        finish: "Industrial Grade Grey Dip Primer & Powder Coat",
+        hardware: "High-Tensile Zinc-Plated Corner Bolts & Gussets"
+    },
+    {
+        id: 36,
+        name: "Metal Drawer Cabinet",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-columns",
+        purpose: "Multi-drawer steel plan chest and map cabinet for engineering drawings, blueprints, and records.",
+        material: "All-Welded Steel Construction",
+        finish: "Scratch-Resistant Smooth Powder Coating",
+        hardware: "Recessed Aluminum Handles & Label Frames"
+    },
+    {
+        id: 37,
+        name: "Metal Printer Stand",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-print",
+        purpose: "Mobile heavy-duty steel printer trolley with bottom paper tray storage and lockable swivel castors.",
+        material: "Reinforced MS Tubular Frame with Steel Trays",
+        finish: "Tough Matte Black/Grey Powder Coating",
+        hardware: "75mm Heavy-Duty PU Swivel Castor Wheels"
+    },
+    {
+        id: 38,
+        name: "Metal CPU Trolley",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-server",
+        purpose: "Adjustable width under-desk metal CPU stand facilitating air circulation and effortless cable maintenance.",
+        material: "Laser-Formed Heavy Gauge Steel Sheet",
+        finish: "Rust-Inhibiting Epoxy Coating",
+        hardware: "Dual-Wheel Castors & Soft Protective Padding"
+    },
+    {
+        id: 39,
+        name: "Metal Folding Table",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-table",
+        purpose: "Quick-fold metal banquet and examination table with spring-loaded locking braces for multipurpose halls.",
+        material: "Tubular Steel Legs with Reinforced Stiffener Ribs",
+        finish: "Anti-Corrosion Powder Coating & Laminate Top",
+        hardware: "Positive Spring Lock Folding Hinge Assembly"
+    },
+    {
+        id: 40,
+        name: "Metal Folding Chair",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-chair",
+        purpose: "Compact folding metal chair with curved ergonomic seat and back for seminars, training, and defense events.",
+        material: "Seamless Round Steel Tubing with Steel/Padded Seat",
+        finish: "Gloss / Textured Epoxy Powder Coat",
+        hardware: "Double-Riveted Pivot Points & Rubber Bushings"
+    },
+    {
+        id: 41,
+        name: "Metal Bed (if required)",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-bed",
+        purpose: "Heavy-duty single or bunk metal bed for defense cantonments, hostels, staff quarters, and disaster centers.",
+        material: "Prime Round/Square MS Hollow Section Pipes",
+        finish: "Automated Dip-Cleaned & Powder Coated Finish",
+        hardware: "Wedge-Lock Assembly & Heavy Wire Mesh Platform"
+    },
+    {
+        id: 42,
+        name: "Metal Cafeteria Table",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-coffee",
+        purpose: "Heavy round-base or four-leg steel canteen table with stain-resistant hygienic tabletop.",
+        material: "Heavy-Gauge Mild Steel Base Pillar & Spider Bracket",
+        finish: "UV-Resistant Electrostatic Powder Coating",
+        hardware: "Stainless Steel Floor Anchors & Leveling Feet"
+    },
+    {
+        id: 43,
+        name: "Metal Cafeteria Bench",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-users",
+        purpose: "Integrated or independent steel canteen dining bench designed for intensive public usage.",
+        material: "Perforated or Solid Steel Sheet over Tubular Frame",
+        finish: "Multi-Coat High-Gloss Anti-Rust Powder Coat",
+        hardware: "Concealed Ground Anchor Fasteners"
+    },
+    {
+        id: 44,
+        name: "Metal Partition Frame",
+        category: "Metal Furniture",
+        categoryKey: "metal",
+        image: "assets/imgs/furniture/Metal_img1.jpg",
+        icon: "fa-border-all",
+        purpose: "Structural steel grid partition framework supporting glass or acoustic board infills for cabin demarcation.",
+        material: "Precision Roll-Formed Steel Sections",
+        finish: "Electro-Galvanized & Thermal Powder Coating",
+        hardware: "Heavy-Duty Floor and Ceiling Compression Fixers"
+    },
+
+    // 3. Stainless Steel (SS) Furniture (20 items)
+    {
+        id: 45,
+        name: "SS Waiting Bench – 2 Seater",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-couch",
+        purpose: "All-weather perforated 2-seater stainless steel airport-style bench with ergonomic contoured curve.",
+        material: "SS 304 / 202 Grade Stainless Steel (1.5mm Seat Plate)",
+        finish: "High-Gloss Mirror / Hairline Satin Finish",
+        hardware: "Heavy Die-Cast Steel Crossbeam & SS Anti-Theft Anchors"
+    },
+    {
+        id: 46,
+        name: "SS Waiting Bench – 3 Seater",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-couch",
+        purpose: "Heavy-duty 3-seater public waiting bench with center support armrests for hospitals and terminals.",
+        material: "Rust-Proof SS 304 Perforated Sheets & Tubing",
+        finish: "Automated Electrolytic Polishing",
+        hardware: "Stainless Steel Armrests & Chrome Leveling Screws"
+    },
+    {
+        id: 47,
+        name: "SS Waiting Bench – 4 Seater",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-couch",
+        purpose: "High-traffic 4-seater stainless steel passenger bench engineered for railway platforms, banks, and PSUs.",
+        material: "Reinforced SS 304 / SS 202 Tubular Framework",
+        finish: "Corrosion-Proof Satin Brush Texture",
+        hardware: "Heavy-Gauge Triangular Connecting Beam & Anchors"
+    },
+    {
+        id: 48,
+        name: "SS Visitor Chair",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-chair",
+        purpose: "Clean, hygienic stainless steel chair with cushioned seat suitable for healthcare clinics and offices.",
+        material: "25mm OD SS 304 Polished Tubing",
+        finish: "Mirror Polish with Medical-Grade Vinyl Upholstery",
+        hardware: "TIG Welded Joints & Floor Shield Shoes"
+    },
+    {
+        id: 49,
+        name: "SS Reception Bench",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-building",
+        purpose: "Contemporary architectural stainless steel bench enhancing front reception foyers and waiting lounges.",
+        material: "High-Grade Stainless Steel Sheet & Square Box Profile",
+        finish: "Dual Finish: Mirror Edges with Brushed Seating Face",
+        hardware: "Concealed Stainless Internal Structural Reinforcement"
+    },
+    {
+        id: 50,
+        name: "SS Office Table",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-table",
+        purpose: "Ultra-hygienic stainless steel desk ideal for forensic labs, defense research setups, and cleanrooms.",
+        material: "All-SS 304 Construction with Sound-Deadened Top",
+        finish: "No. 4 Sanitary Satin Polish",
+        hardware: "Stainless Steel Drawer Slides & Key Locks"
+    },
+    {
+        id: 51,
+        name: "SS Dining Table",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-utensils",
+        purpose: "Commercial grade stainless steel cafeteria table with welded cross-braces for institutional canteens.",
+        material: "1.2mm Thick SS 304 Food-Grade Top Plate",
+        finish: "Non-Porous Stain-Resistant Brush Finish",
+        hardware: "Heavy 38mm SS Pipe Legs with Leveling Studs"
+    },
+    {
+        id: 52,
+        name: "SS Cafeteria Table",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-coffee",
+        purpose: "Waterproof, grease-proof stainless steel dining table capable of rigorous daily steam cleaning.",
+        material: "SS 304 Top with Heavy Galvanized Under-Hat Channels",
+        finish: "Smooth Sanitary Beveled Edge Finish",
+        hardware: "Stainless Steel Flanged Feet for Floor Bolting"
+    },
+    {
+        id: 53,
+        name: "SS Cafeteria Bench",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-users",
+        purpose: "Full stainless steel bench that slides neatly under dining tables to optimize canteen aisle circulation.",
+        material: "1.5mm SS 304 Sheet with Folded Safety Edges",
+        finish: "Anti-Corrosion Matte Satin Surface",
+        hardware: "Continuous Welded Gussets & Floor Protection Glides"
+    },
+    {
+        id: 54,
+        name: "SS Storage Rack",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-layer-group",
+        purpose: "Multi-tier stainless steel slatted rack for medical cold rooms, institutional pantries, and chemical stores.",
+        material: "SS 304 Tubular Uprights & Perforated/Solid Shelves",
+        finish: "Clean Electro-Polished Surface",
+        hardware: "Fully Adjustable Shelf Brackets & Safety Guardrails"
+    },
+    {
+        id: 55,
+        name: "SS Open Rack",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-bars",
+        purpose: "Heavy-duty 4-shelf or 5-shelf stainless steel rack engineered for heavy warehouse and laboratory loads.",
+        material: "Heavy Gauge SS 202 / 304 Angles and Trays",
+        finish: "Industrial Mill / Brushed Finish",
+        hardware: "Stainless Steel Fasteners & Heavy Base Plates"
+    },
+    {
+        id: 56,
+        name: "SS Shoe Rack",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-shoe-prints",
+        purpose: "Ventilated tiered stainless steel shoe rack designed for sterile lab entrances and office reception gates.",
+        material: "SS 304 Wire Mesh / Slotted Tube Tiers",
+        finish: "Bright Electrolytic Polish",
+        hardware: "Sloped Anti-Dust Shelving & Removable Drip Trays"
+    },
+    {
+        id: 57,
+        name: "SS Storage Cabinet",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-door-closed",
+        purpose: "Enclosed twin-door stainless steel cabinet with lock for sanitary records, surgical items, or instruments.",
+        material: "Double-Skin SS 304 Sheet with Internal Stiffeners",
+        finish: "Hairline Satin Directional Polish",
+        hardware: "Stainless Steel Piano Hinges & 3-Point Handle Lock"
+    },
+    {
+        id: 58,
+        name: "SS Locker Cabinet",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-lock",
+        purpose: "100% rust-free stainless steel locker bank ideal for humid coastal areas, food processing, and sports clubs.",
+        material: "SS 304 Non-Corrosive Sheet Panels",
+        finish: "Scotch-Brite Satin Brush Finish",
+        hardware: "Stainless Cam Locks & Internal Clothes Hook"
+    },
+    {
+        id: 59,
+        name: "SS Pantry Table",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-sink",
+        purpose: "Food-grade stainless steel preparation table with 100mm rear splashback and heavy lower storage shelf.",
+        material: "Commercial Food-Grade SS 304 (16 Gauge)",
+        finish: "No. 4 Polish with Hemmed Safety Rim",
+        hardware: "Adjustable Bullet Feet for Leveling on Wet Tile"
+    },
+    {
+        id: 60,
+        name: "SS Serving Counter",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-concierge-bell",
+        purpose: "Buffet style stainless steel service counter with sliding bottom doors, tray slides, and sneeze guard.",
+        material: "Heavy-Gauge Reinforced SS 304 Structure",
+        finish: "Polished Mirror/Satin Contrast",
+        hardware: "Toughened Glass Guard & Ball-Bearing Door Rollers"
+    },
+    {
+        id: 61,
+        name: "SS Trolley",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-dolly-flatbed",
+        purpose: "Two or three tier mobile stainless steel utility trolley with surrounding guardrails and push handles.",
+        material: "Seamless Tubular SS Frame with Deep-Drawn Trays",
+        finish: "High-Luster Sanitary Mirror Polish",
+        hardware: "100mm Silent Non-Marking Swivel Castors (2 with Brakes)"
+    },
+    {
+        id: 62,
+        name: "SS Display Stand",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-tv",
+        purpose: "Heavy round-base stainless steel display pedestal for official notices, direction signage, and awards.",
+        material: "SS 304 Heavy Base Pillar and Snap-Frame Holder",
+        finish: "Mirror Chrome Finish Stainless Steel",
+        hardware: "Weighted Cast Base & Acrylic Protective Sheet"
+    },
+    {
+        id: 63,
+        name: "SS Newspaper Stand",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-newspaper",
+        purpose: "Free-standing stainless steel multi-rod rack for newspapers, magazines, and government publications.",
+        material: "Polished Stainless Steel Tubing & Hanging Rods",
+        finish: "Anti-Fingerprint Satin Finish",
+        hardware: "Modular Assembly & Heavy Tip-Proof Base"
+    },
+    {
+        id: 64,
+        name: "SS Dustbin Stand",
+        category: "Stainless Steel (SS) Furniture",
+        categoryKey: "ss",
+        image: "assets/imgs/furniture/SS_img1.jpg",
+        icon: "fa-trash-alt",
+        purpose: "Dual or triple stainless steel swing bin stand for wet/dry waste segregation in corridors.",
+        material: "SS 202 / 304 Grade Heavy Steel Pipe Frame",
+        finish: "Weatherproof Polished Stainless Finish",
+        hardware: "Smooth 360-Degree Counter-Weighted Swing Covers"
+    },
+
+    // 4. Modular Furniture (24 items)
+    {
+        id: 65,
+        name: "Modular Workstation – Single Seater",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-user",
+        purpose: "Independent modular workstation module with acoustic fabric tile, wire raceway, and 3-drawer pedestal.",
+        material: "Pre-Laminated Particle Board with Aluminum Alloy Profiles",
+        finish: "High-Pressure Anti-Scratch Melamine Top (25mm)",
+        hardware: "Integrated Dual-Channel Aluminum Raceway & Data Bezel"
+    },
+    {
+        id: 66,
+        name: "Modular Workstation – 2 Seater",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-user-friends",
+        purpose: "Linear face-to-face or back-to-back 2-person workstation with shared central spine partition.",
+        material: "Extruded Aluminum Trim System & Commercial Core",
+        finish: "Two-Tone Melamine with Acoustic Tackable Pinboard",
+        hardware: "Concealed Modesty Brackets & Cable Drops"
+    },
+    {
+        id: 67,
+        name: "Modular Workstation – 4 Seater",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-users",
+        purpose: "Quad workstation benching matrix with shared cable trunks, glass/fabric dividers, and mobile pedestals.",
+        material: "Precision Engineered Laminate & Steel Understructure",
+        finish: "Wear-Resistant 2mm Impact Edge Binding",
+        hardware: "Centralized Power Conduit Box & Magnetic Wire Risers"
+    },
+    {
+        id: 68,
+        name: "Modular Workstation – 6 Seater",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-network-wired",
+        purpose: "Collaborative 6-person modular team bench designed for open corporate floors and tech centers.",
+        material: "High-Tensile Steel Post Structure with Laminate Top",
+        finish: "Matte Frost White / Natural Oak Woodgrain Top",
+        hardware: "Pop-Up Fast Charging Sockets & LAN Pass-Throughs"
+    },
+    {
+        id: 69,
+        name: "Modular Workstation – 8 Seater",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-sitemap",
+        purpose: "High-density 8-user modular benching solution with shared central wire spine and sound-absorbing screens.",
+        material: "Aircraft Grade Aluminum Alloy Extrusions & Core",
+        finish: "Low-VOC Eco-Friendly Melamine Coating",
+        hardware: "Heavy-Duty Cable Trays Under Desk & Leveling Screws"
+    },
+    {
+        id: 70,
+        name: "Modular Executive Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-briefcase",
+        purpose: "Modern minimalist modular executive desk featuring a floating top design, return credenza, and cable bridge.",
+        material: "25mm Postformed / Pre-Laminated Engineered Board",
+        finish: "Designer Teak / Charcoal Matte Fusion Finish",
+        hardware: "CNC Machined Aluminum Leg Support & Wire Duct"
+    },
+    {
+        id: 71,
+        name: "Modular Manager Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-user-tie",
+        purpose: "Flexible modular managerial desk with side extension for paperwork, printer, and executive files.",
+        material: "High-Density BWP Wood Composite",
+        finish: "Thermal-Bonded Stain-Proof Melamine",
+        hardware: "Three-Drawer Mobile Pedestal on Castors"
+    },
+    {
+        id: 72,
+        name: "Modular Meeting Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-handshake",
+        purpose: "Reconfigurable modular meeting table easily expandable by linking modular extension leaves.",
+        material: "Heavy Gauge Metal Leg Base with Wooden Top",
+        finish: "Anti-Glare Matte Woodgrain Finish",
+        hardware: "Quick-Lock Linking Clamps & Cable Routing Spine"
+    },
+    {
+        id: 73,
+        name: "Modular Conference Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-users-cog",
+        purpose: "Executive boardroom table modularly expandable with built-in brush cable grommets and AV integration.",
+        material: "Heavy 36mm Top Panel with Stiffened Metal Beam",
+        finish: "Premium Veneer / Scratch-Proof Melamine Finish",
+        hardware: "Motorized Flip-Up Power, HDMI & USB Hubs"
+    },
+    {
+        id: 74,
+        name: "Modular Reception Counter",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-concierge-bell",
+        purpose: "Modular front lobby counter configurable in straight, L-shape, or U-shape configurations with LED accents.",
+        material: "High-Density Fiberboard & Solid Surface Top",
+        finish: "High-Gloss Accent Panel with Matte Body",
+        hardware: "Modular Return Desk & Built-In Document Dividers"
+    },
+    {
+        id: 75,
+        name: "Modular Storage Cabinet",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-archive",
+        purpose: "Stackable and modular storage credenza with tambour sliding or hinged doors for space optimization.",
+        material: "Pre-Laminated High-Density Particle Board",
+        finish: "Smooth Touch Melamine with Impact-Proof Edging",
+        hardware: "Concealed Euro Hinges & Multi-Point Lock"
+    },
+    {
+        id: 76,
+        name: "Modular Drawer Unit",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-folder",
+        purpose: "Freestanding or under-desk modular drawer bank with central locking and stationary organizers.",
+        material: "Cold-Formed Composite Board with PVC Edge Trim",
+        finish: "Neutral Office Grey / Woodgrain Laminate",
+        hardware: "Full-Extension Telescopic Steel Drawer Runners"
+    },
+    {
+        id: 77,
+        name: "Modular Pedestal",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-cube",
+        purpose: "Three-drawer mobile workstation pedestal with anti-tilt fifth wheel, pencil tray, and filing frame.",
+        material: "Heavy-Duty Pre-Laminated Board / Metal Body",
+        finish: "Textured Scratch-Resistant Finish",
+        hardware: "Heavy-Duty PU Castors & Central Master Key System"
+    },
+    {
+        id: 78,
+        name: "Modular Partition",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-columns",
+        purpose: "Floor-mounted modular partition system (50mm/65mm thick) with internal cable raceways, fabric, and glass.",
+        material: "Precision Aluminum Extrusions & Acoustic Core",
+        finish: "Anodized Silver / Powder Coated Frame with Fabric Tile",
+        hardware: "Snap-In Tile Construction & Internal Raceway Conduits"
+    },
+    {
+        id: 79,
+        name: "Modular Overhead Cabinet",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-box-open",
+        purpose: "Overhead storage locker mounted directly onto partition uprights with gas spring flip-up doors.",
+        material: "Commercial Plywood / Metal Backing",
+        finish: "Pre-Laminated Melamine Surface",
+        hardware: "Pneumatic Stay Lift Arms & Keyed Cam Lock"
+    },
+    {
+        id: 80,
+        name: "Modular Wall Storage",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-th",
+        purpose: "Floor-to-ceiling modular storage wall combining open reference shelves and lockable lower credenzas.",
+        material: "Heavy 18mm Pre-Laminated Woodgrain Board",
+        finish: "Durable Thermally Fused Melamine",
+        hardware: "Heavy-Duty Connecting Minifix Bolts & Shelf Clips"
+    },
+    {
+        id: 81,
+        name: "Modular Bookshelf",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-book",
+        purpose: "Interlocking modular shelving unit that can be reconfigured horizontally or vertically as room dividers.",
+        material: "Reinforced Composite Board Structure",
+        finish: "Contrast Two-Tone Designer Laminate",
+        hardware: "Heavy-Duty Floor Leveler Adjusters"
+    },
+    {
+        id: 82,
+        name: "Modular Credenza",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-boxes",
+        purpose: "Low-height modular credenza unit providing printer resting area, paper storage, and tea service counter.",
+        material: "High-Strength Marine Core Board",
+        finish: "Natural Woodgrain Laminate",
+        hardware: "Smooth Sliding Tambour Door Tracks"
+    },
+    {
+        id: 83,
+        name: "Modular Pantry Cabinet",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-utensils",
+        purpose: "Modular corporate kitchenette cabinetry with water-resistant sink cutout and utensil drawers.",
+        material: "100% Boiling Water Resistant (BWR) Plywood",
+        finish: "High-Pressure Anti-Bacterial Acrylic Laminate",
+        hardware: "Soft-Close German Hydraulic Hinges & SS Wire Pull-Outs"
+    },
+    {
+        id: 84,
+        name: "Modular Training Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-graduation-cap",
+        purpose: "Flip-top nestable training table with lockable wheels for rapid seminar hall and classroom layout changes.",
+        material: "Cold-Rolled Steel Legs with 25mm Pre-Lam Top",
+        finish: "Scratch-Resistant Melamine with Perforated Modesty Panel",
+        hardware: "One-Touch Dual Lever Flip-Top Mechanism & Wheel Brakes"
+    },
+    {
+        id: 85,
+        name: "Modular Discussion Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-comments",
+        purpose: "Circular or boat-shaped modular discussion table fostering informal team collaborations.",
+        material: "Heavy Disc Base Metal Stand with Wooden Top",
+        finish: "Heat-Resistant Melamine Surface",
+        hardware: "Heavy Cast-Iron Stabilizer Base Disc"
+    },
+    {
+        id: 86,
+        name: "Modular L-Shaped Workstation",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-vector-square",
+        purpose: "Spacious corner L-shaped workstation maximizing desktop area for multitasking technical officers.",
+        material: "Pre-Laminated Engineered Board with Steel Legs",
+        finish: "Durable Postformed / PVC Edged Surface",
+        hardware: "Integrated Left/Right Reversible Return & Cable Snake"
+    },
+    {
+        id: 87,
+        name: "Modular U-Shaped Workstation",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-square-full",
+        purpose: "Command-center executive workstation with main desk, bridge, and back credenza unit for high-level officials.",
+        material: "Commercial Grade BWP Core Board",
+        finish: "Executive Walnut / Teak Matte Laminate",
+        hardware: "Concealed High-Capacity Wire Ducts & Lock System"
+    },
+    {
+        id: 88,
+        name: "Modular Collaborative Table",
+        category: "Modular Furniture",
+        categoryKey: "modular",
+        image: "assets/imgs/furniture/Modular_img1.jpg",
+        icon: "fa-puzzle-piece",
+        purpose: "Curved organic collaborative table modules that snap together to create dynamic conference configurations.",
+        material: "Flexible Engineered Wood with Powder Coated Steel Base",
+        finish: "Anti-Glare Smooth White / Natural Wood Finish",
+        hardware: "Magnetic Quick-Latch Table Connectors"
+    }
+];
+
+// Fallback image handler for furniture
+function handleFurnitureImgFallback(img) {
+    if (!img) return;
+    img.style.display = "none";
+    if (img.nextElementSibling && img.nextElementSibling.classList.contains("card-photo-fallback")) {
+        img.nextElementSibling.style.display = "flex";
+    }
+}
+
+// --------------------------------------------
+// Interactive Furniture Catalog Modal & Slider
+// --------------------------------------------
+function initFurnitureCatalogModal() {
+    const modal = document.getElementById("furnitureCatalogModal");
+    if (!modal) return;
+
+    const overlay = document.getElementById("furnitureModalOverlay");
+    const closeBtn = document.getElementById("furnitureModalClose");
+    const prevBtn = document.getElementById("furnitureSliderPrev");
+    const nextBtn = document.getElementById("furnitureSliderNext");
+    const nextBtnInline = document.getElementById("furnitureNextSlideInline");
+    const filterBtns = modal.querySelectorAll(".eq-filter-btn");
+    const thumbTrack = document.getElementById("furnitureThumbTrack");
+
+    let currentFilter = "all";
+    let filteredList = [...FURNITURE_DATA];
+    let currentIndex = 0;
+
+    function openModal() {
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    // Modal Triggers
+    document.querySelectorAll(".furniture-modal-trigger, #openFurnitureModalBtn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal();
+        });
+    });
+
+    if (overlay) overlay.addEventListener("click", closeModal);
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+    // Filter Buttons inside Modal
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentFilter = btn.getAttribute("data-filter");
+            applyFilter(currentFilter);
+        });
+    });
+
+    function applyFilter(filter) {
+        if (filter === "all") {
+            filteredList = [...FURNITURE_DATA];
+        } else {
+            filteredList = FURNITURE_DATA.filter(item => item.categoryKey === filter);
+        }
+        currentIndex = 0;
+        renderThumbnails();
+        renderSlide(currentIndex);
+    }
+
+    function renderSlide(idx) {
+        if (!filteredList.length) return;
+        const item = filteredList[idx];
+        if (!item) return;
+
+        const imgEl = document.getElementById("furnitureSlideImg");
+        const fallbackEl = document.getElementById("furniturePhotoFallback");
+        const fallbackIcon = document.getElementById("furnitureFallbackIcon");
+        const fallbackTitle = document.getElementById("furnitureFallbackTitle");
+        const counterEl = document.getElementById("furnitureCounterBadge");
+        const catPill = document.getElementById("furnitureCategoryPill");
+        const itemHeading = document.getElementById("furnitureItemHeading");
+        const purposeDesc = document.getElementById("furniturePurposeDesc");
+        const specMaterial = document.getElementById("furnitureSpecMaterial");
+        const specFinish = document.getElementById("furnitureSpecFinish");
+        const specHardware = document.getElementById("furnitureSpecHardware");
+        const enquireBtn = document.getElementById("furnitureSlideEnquireBtn");
+
+        const prefix = document.querySelector('link[rel="stylesheet"][href^="../"]') ? '../' : '';
+        const resolvedImg = prefix + item.image;
+
+        if (imgEl && fallbackEl) {
+            imgEl.style.display = "block";
+            fallbackEl.style.display = "none";
+            imgEl.alt = item.name;
+
+            const tempImg = new Image();
+            tempImg.onload = () => {
+                imgEl.src = resolvedImg;
+                imgEl.style.display = "block";
+                fallbackEl.style.display = "none";
+            };
+            tempImg.onerror = () => {
+                imgEl.style.display = "none";
+                fallbackEl.style.display = "flex";
+                if (fallbackIcon) fallbackIcon.className = `fas ${item.icon || 'fa-chair'}`;
+                if (fallbackTitle) fallbackTitle.textContent = item.name;
+            };
+            tempImg.src = resolvedImg;
+        }
+
+        if (counterEl) counterEl.textContent = `${idx + 1} / ${filteredList.length}`;
+        if (catPill) catPill.textContent = item.category;
+        if (itemHeading) itemHeading.textContent = `${item.id}. ${item.name}`;
+        if (purposeDesc) purposeDesc.textContent = item.purpose;
+        if (specMaterial) specMaterial.textContent = item.material;
+        if (specFinish) specFinish.textContent = item.finish;
+        if (specHardware) specHardware.textContent = item.hardware;
+
+        if (enquireBtn) {
+            enquireBtn.href = `${prefix}contact-us/index.html?service=Office%20Furniture&item=${encodeURIComponent(item.name)}`;
+        }
+
+        const allThumbs = thumbTrack ? thumbTrack.querySelectorAll(".eq-thumb-card") : [];
+        allThumbs.forEach((thumb, tIdx) => {
+            const isActive = tIdx === idx;
+            thumb.classList.toggle("active", isActive);
+            if (isActive) {
+                thumb.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+            }
+        });
+    }
+
+    function renderThumbnails() {
+        if (!thumbTrack) return;
+        thumbTrack.innerHTML = "";
+        const prefix = document.querySelector('link[rel="stylesheet"][href^="../"]') ? '../' : '';
+
+        filteredList.forEach((item, idx) => {
+            const card = document.createElement("div");
+            card.className = `eq-thumb-card ${idx === currentIndex ? "active" : ""}`;
+            card.setAttribute("role", "button");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("title", item.name);
+
+            card.innerHTML = `
+                <div class="eq-thumb-img-wrap">
+                    <img src="${prefix}${item.image}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="mini-fallback" style="display:none;"><i class="fas ${item.icon || 'fa-chair'}"></i></div>
+                </div>
+                <div class="eq-thumb-card-title">
+                    <span class="eq-thumb-badge-num">${item.id}</span>${item.name}
+                </div>
+            `;
+
+            card.addEventListener("click", () => {
+                currentIndex = idx;
+                renderSlide(currentIndex);
+            });
+
+            thumbTrack.appendChild(card);
+        });
+    }
+
+    function nextSlide() {
+        if (!filteredList.length) return;
+        currentIndex = (currentIndex + 1) % filteredList.length;
+        renderSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        if (!filteredList.length) return;
+        currentIndex = (currentIndex - 1 + filteredList.length) % filteredList.length;
+        renderSlide(currentIndex);
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+    if (nextBtnInline) nextBtnInline.addEventListener("click", nextSlide);
+
+    // Initial render
+    renderThumbnails();
+}
+
+// --------------------------------------------
+// Home Section Interactivity (Category tabs & Thumbnails)
+// --------------------------------------------
+function initFurnitureHomeSection() {
+    const catTabs = document.querySelectorAll(".furniture-cat-tab");
+    const catPanels = document.querySelectorAll(".furniture-cat-panel");
+    const mainPhoto = document.getElementById("furnitureMainPhoto");
+    const thumbs = document.querySelectorAll(".furniture-thumb");
+
+    // Category Tabs click
+    catTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const targetCat = tab.getAttribute("data-cat");
+            catTabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            catPanels.forEach(panel => {
+                if (panel.getAttribute("data-cat-panel") === targetCat) {
+                    panel.classList.add("active");
+                } else {
+                    panel.classList.remove("active");
+                }
+            });
+
+            // Update main photo if corresponding thumbnail has image
+            const matchingThumb = document.querySelector(`.furniture-thumb[data-cat="${targetCat}"]`);
+            if (matchingThumb && mainPhoto) {
+                const img = matchingThumb.querySelector("img");
+                if (img && img.getAttribute("src")) {
+                    mainPhoto.src = img.getAttribute("src");
+                }
+                thumbs.forEach(th => th.classList.remove("active"));
+                matchingThumb.classList.add("active");
+            }
+        });
+    });
+
+    // 4 Thumbnails click under main image
+    thumbs.forEach(thumb => {
+        thumb.addEventListener("click", () => {
+            thumbs.forEach(t => t.classList.remove("active"));
+            thumb.classList.add("active");
+            const targetCat = thumb.getAttribute("data-cat");
+
+            const img = thumb.querySelector("img");
+            if (img && mainPhoto) {
+                mainPhoto.src = img.getAttribute("src");
+            }
+
+            // Sync category tab if present
+            if (targetCat) {
+                const matchingTab = document.querySelector(`.furniture-cat-tab[data-cat="${targetCat}"]`);
+                if (matchingTab) {
+                    catTabs.forEach(t => t.classList.remove("active"));
+                    matchingTab.classList.add("active");
+                }
+                catPanels.forEach(panel => {
+                    if (panel.getAttribute("data-cat-panel") === targetCat) {
+                        panel.classList.add("active");
+                    } else {
+                        panel.classList.remove("active");
+                    }
+                });
+            }
+        });
+    });
+
+    // Wire item clicks to open modal at specific item
+    document.querySelectorAll(".furniture-item-card[data-item-id]").forEach(itemCard => {
+        itemCard.addEventListener("click", () => {
+            const itemId = parseInt(itemCard.getAttribute("data-item-id"), 10);
+            const modal = document.getElementById("furnitureCatalogModal");
+            if (modal) {
+                modal.classList.add("active");
+                modal.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+
+                // Trigger item in slider
+                const targetIdx = FURNITURE_DATA.findIndex(it => it.id === itemId);
+                if (targetIdx !== -1) {
+                    setTimeout(() => {
+                        const allThumbs = document.querySelectorAll("#furnitureThumbTrack .eq-thumb-card");
+                        if (allThumbs && allThumbs[targetIdx]) {
+                            allThumbs[targetIdx].click();
+                        }
+                    }, 50);
+                }
+            }
+        });
+    });
 }
