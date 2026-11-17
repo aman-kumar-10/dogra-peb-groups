@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initEquipmentCatalogModal();
     initFurnitureCatalogModal();
     initFurnitureHomeSection();
+    initFabricationHomeSection();
 });
 
 // ============================================
@@ -3057,9 +3058,8 @@ function initFurnitureCatalogModal() {
             card.setAttribute("title", item.name);
 
             card.innerHTML = `
-                <div class="eq-thumb-img-wrap">
-                    <img src="${prefix}${item.image}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="mini-fallback" style="display:none;"><i class="fas ${item.icon || 'fa-chair'}"></i></div>
+                <div class="eq-thumb-icon-holder">
+                    <i class="fas ${item.icon || 'fa-chair'}"></i>
                 </div>
                 <div class="eq-thumb-card-title">
                     <span class="eq-thumb-badge-num">${item.id}</span>${item.name}
@@ -3185,4 +3185,26 @@ function initFurnitureHomeSection() {
             }
         });
     });
+}
+
+
+// ============================================
+// 16. FABRICATED PRODUCTS SECTION (MS / SS / GI)
+// ============================================
+function initFabricationHomeSection() {
+    const mainPhoto = document.getElementById("fabricationMainPhoto");
+    const thumbs = document.querySelectorAll(".fabrication-thumb");
+
+    if (thumbs.length && mainPhoto) {
+        thumbs.forEach(thumb => {
+            thumb.addEventListener("click", () => {
+                thumbs.forEach(t => t.classList.remove("active"));
+                thumb.classList.add("active");
+                const imgSrc = thumb.getAttribute("data-img");
+                if (imgSrc) {
+                    mainPhoto.src = imgSrc;
+                }
+            });
+        });
+    }
 }

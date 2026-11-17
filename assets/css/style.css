@@ -2131,6 +2131,9 @@ footer::before {
 }
 
 .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800;
     font-size: 1.85rem;
@@ -2144,6 +2147,16 @@ footer::before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.footer-logo img,
+.footer-logo .logo-icon,
+.footer-about .logo-icon,
+.footer-brand img {
+    width: 95px !important;
+    height: 46px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
 }
 
 .footer-about p {
@@ -5741,6 +5754,861 @@ footer::before {
     }
     .assurance-hero-banner {
         padding: 1.5rem 1.25rem;
+    }
+}
+
+
+
+/* --------------------------------------------------------------------------
+   25. CATEGORY BANNERS & CLEAN TECHNICAL CARDS (NO PER-PRODUCT IMAGE OVERLOAD)
+   -------------------------------------------------------------------------- */
+.furniture-category-showcase-section {
+    margin-bottom: 2.5rem;
+}
+
+.furniture-cat-banners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.furniture-cat-banner-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.furniture-cat-banner-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 12px 30px rgba(255, 106, 0, 0.15);
+}
+
+.banner-card-img-wrap {
+    position: relative;
+    height: 150px;
+    background: #0F172A;
+    overflow: hidden;
+}
+
+.banner-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.furniture-cat-banner-card:hover .banner-card-img-wrap img {
+    transform: scale(1.08);
+}
+
+.banner-card-badge {
+    position: absolute;
+    bottom: 0.65rem;
+    left: 0.65rem;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 106, 0, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.banner-card-badge i {
+    color: var(--color-accent);
+}
+
+.banner-card-content {
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.banner-card-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+    margin-bottom: 0.35rem;
+}
+
+.banner-card-content h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.45rem;
+    line-height: 1.25;
+}
+
+.banner-card-content p {
+    font-size: 0.82rem;
+    color: #64748B;
+    line-height: 1.5;
+    margin-bottom: 0.85rem;
+    flex-grow: 1;
+}
+
+.banner-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    border-top: 1px dashed #E2E8F0;
+    padding-top: 0.65rem;
+}
+
+.banner-card-action i {
+    transition: transform 0.25s ease;
+}
+
+.furniture-cat-banner-card:hover .banner-card-action i {
+    transform: translateX(4px);
+}
+
+/* Card Top Bar for Furniture & Fabricated Product Cards */
+.card-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 1.25rem 0.5rem 1.25rem;
+    border-bottom: 1px dashed rgba(226, 232, 240, 0.85);
+}
+
+.card-number-badge-inline {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #0F172A;
+    color: var(--color-accent);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-top-bar .card-cat-badge {
+    position: static;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.28rem 0.75rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.eq-thumb-icon-holder {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #0F172A;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin: 0.35rem auto 0.45rem;
+}
+
+/* --------------------------------------------------------------------------
+   26. MS / SS / GI FABRICATED PRODUCTS SECTION (HOMEPAGE)
+   -------------------------------------------------------------------------- */
+.fabrication-section {
+    position: relative;
+    padding: 3rem 0 5rem 0;
+    margin-top: 1rem;
+}
+
+.fabrication-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: 0 12px 40px -10px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+    padding: 2.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.fabrication-card::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(255, 106, 0, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.fabrication-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.12fr;
+    gap: 2.25rem;
+    align-items: start;
+}
+
+.fabrication-gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.fabrication-main-image-wrap {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    height: 380px;
+    background: #0F172A;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+}
+
+.fabrication-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fabrication-main-image-wrap:hover .fabrication-main-image {
+    transform: scale(1.04);
+}
+
+.fabrication-thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.85rem;
+}
+
+.fabrication-thumb {
+    position: relative;
+    height: 95px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-fast);
+    background: #0F172A;
+}
+
+.fabrication-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-fast);
+}
+
+.fabrication-thumb:hover,
+.fabrication-thumb.active {
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(255, 106, 0, 0.35);
+}
+
+.fabrication-thumb:hover img {
+    transform: scale(1.08);
+}
+
+.fabrication-thumb .thumb-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(7, 11, 19, 0.92) 0%, transparent 100%);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.75rem 0.35rem 0.25rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fabrication-trust-strip {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 0.85rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.95rem;
+    margin-bottom: 0.85rem;
+}
+
+.fabrication-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.fabrication-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.fabrication-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.15;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+}
+
+.fabrication-subtitle {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #64748B;
+    margin-bottom: 0.85rem;
+}
+
+.fabrication-description {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: #334155;
+    margin-bottom: 1.15rem;
+}
+
+.fabrication-commitment-banner {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    border: 1px solid rgba(255, 106, 0, 0.35);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.35rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.95rem;
+    color: #FFFFFF;
+}
+
+.fabrication-commitment-banner .commitment-icon {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.commitment-text h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.commitment-tagline {
+    display: inline-block;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.84rem;
+    margin-bottom: 0.25rem;
+}
+
+.commitment-text p {
+    font-size: 0.85rem;
+    color: #CBD5E1;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 8 Core Product Items Grid in Home Section */
+.fabrication-items-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 1.15rem;
+    margin-bottom: 1.25rem;
+    max-height: 330px;
+    overflow-y: auto;
+}
+
+.fabrication-items-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+}
+
+.fab-home-item-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    transition: all var(--transition-fast);
+}
+
+.fab-home-item-card:hover {
+    border-color: var(--color-accent);
+    background: #FFFDF9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.08);
+}
+
+.fab-home-item-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #0F172A;
+    color: var(--color-accent);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.74rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.fab-home-item-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.fab-home-item-title {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fab-home-item-desc {
+    font-size: 0.75rem;
+    color: #64748B;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 6 Additional Categories Pill Grid */
+.additional-categories-wrap {
+    margin-top: 0.5rem;
+}
+
+.additional-cat-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #64748B;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.additional-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.additional-cat-pill {
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all var(--transition-fast);
+}
+
+.additional-cat-pill:hover {
+    background: #0F172A;
+    color: #FFFFFF;
+    border-color: #0F172A;
+}
+
+.additional-cat-pill i {
+    color: var(--color-accent);
+    font-size: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   27. DEDICATED FABRICATED PRODUCTS PAGE STYLES
+   -------------------------------------------------------------------------- */
+.fab-page-intro-banner {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    border-radius: 20px;
+    padding: 2.25rem;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 106, 0, 0.35);
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
+    margin-bottom: 3rem;
+}
+
+.fab-category-banners-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.fab-cat-banner-item {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.fab-cat-banner-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-accent);
+    box-shadow: 0 14px 32px rgba(255, 106, 0, 0.18);
+}
+
+.fab-cat-banner-img {
+    position: relative;
+    height: 180px;
+    background: #0F172A;
+    overflow: hidden;
+}
+
+.fab-cat-banner-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.fab-cat-banner-item:hover .fab-cat-banner-img img {
+    transform: scale(1.08);
+}
+
+.fab-cat-banner-body {
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.fab-cat-banner-tag {
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 0.35rem;
+}
+
+.fab-cat-banner-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.5rem;
+}
+
+.fab-cat-banner-body p {
+    font-size: 0.86rem;
+    color: #64748B;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.fab-cat-banner-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    border-top: 1px dashed #E2E8F0;
+    padding-top: 0.75rem;
+}
+
+/* Dedicated Product Cards (8 Items) */
+.fab-product-card {
+    background: #FFFFFF;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.fab-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(255, 106, 0, 0.35);
+}
+
+.fab-product-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem 0.75rem 1.5rem;
+    border-bottom: 1px dashed rgba(226, 232, 240, 0.85);
+    background: #F8FAFC;
+}
+
+.fab-product-sn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #0F172A;
+    color: var(--color-accent);
+    font-family: 'Space Grotesk', monospace;
+    font-size: 0.95rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fab-product-cat-tag {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.tag-ms { background: rgba(37, 99, 235, 0.12); color: #1D4ED8; }
+.tag-ss { background: rgba(14, 165, 233, 0.12); color: #0284C7; }
+.tag-gi { background: rgba(217, 119, 6, 0.12); color: #B45309; }
+.tag-sanitation { background: rgba(5, 150, 105, 0.12); color: #047857; }
+
+.fab-product-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.fab-product-body h3 {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.fab-product-body h3 i {
+    color: var(--color-accent);
+    font-size: 1.15rem;
+}
+
+.fab-product-scope {
+    font-size: 0.88rem;
+    color: #1E293B;
+    background: rgba(255, 106, 0, 0.08);
+    border-left: 3px solid var(--color-accent);
+    padding: 0.65rem 0.95rem;
+    border-radius: 6px;
+    margin-bottom: 1.15rem;
+    line-height: 1.5;
+}
+
+.fab-specs-matrix {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.84rem;
+}
+
+.fab-specs-matrix li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: #475569;
+    line-height: 1.45;
+}
+
+.fab-specs-matrix li strong {
+    color: #0F172A;
+    min-width: 105px;
+    flex-shrink: 0;
+}
+
+.fab-app-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.fab-app-tag {
+    background: #F1F5F9;
+    color: #475569;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+}
+
+/* 6 Additional Categories on Subpage */
+.fab-extra-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.fab-extra-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 1.35rem;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.fab-extra-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 24px rgba(255, 106, 0, 0.12);
+}
+
+.fab-extra-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #0F172A;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.fab-extra-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.45rem;
+}
+
+.fab-extra-card p {
+    font-size: 0.84rem;
+    color: #64748B;
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* Responsive Rules for Fabrication */
+@media (max-width: 1024px) {
+    .furniture-cat-banners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .fabrication-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .fabrication-main-image-wrap {
+        height: 320px;
+    }
+    .fab-category-banners-row {
+        grid-template-columns: 1fr;
+    }
+    .fab-extra-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .furniture-cat-banners-grid {
+        grid-template-columns: 1fr;
+    }
+    .fabrication-section {
+        padding: 1.5rem 0 3.5rem 0;
+        margin-top: 1rem;
+    }
+    .fabrication-card {
+        padding: 1.35rem 1.1rem;
+    }
+    .fabrication-main-image-wrap {
+        height: 250px;
+    }
+    .fabrication-thumb-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    .fabrication-thumb {
+        height: 75px;
+    }
+    .fabrication-items-grid {
+        grid-template-columns: 1fr;
+    }
+    .additional-categories-grid {
+        grid-template-columns: 1fr;
+    }
+    .fabrication-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .fabrication-trust-strip {
+        grid-template-columns: 1fr;
+    }
+    .fab-page-intro-banner {
+        padding: 1.5rem 1.25rem;
+    }
+    .fab-extra-grid {
+        grid-template-columns: 1fr;
     }
 }
 
